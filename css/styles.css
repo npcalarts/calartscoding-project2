@@ -1,0 +1,230 @@
+/* NON INT. — interview page */
+:root {
+  --bg: #ffffff;
+  --ink: #111111;
+  --line: #1a1a1a;
+  color-scheme: light;
+  --col: 760px;            /* width of the header */
+  --font: "Inter", "Helvetica Neue", Arial, sans-serif;
+}
+
+/* dark mode: JS sets data-theme="dark" on <html> */
+:root[data-theme="dark"] {
+  --bg: #111111;
+  --ink: #f2f2f2;
+  --line: #f2f2f2;
+  color-scheme: dark;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font);
+  font-size: 15px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  transition: background-color .2s, color .2s;
+}
+
+img { display: block; max-width: 100%; height: auto; }
+a { color: inherit; }
+a:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
+
+.wrap {
+  width: min(var(--col), 100% - 32px);
+  margin: 24px auto 80px;
+}
+
+/* ---------- Header ---------- */
+.site-header {
+  --hline: 1.5px;
+  container-type: inline-size;       /* type scales with header width */
+  display: grid;
+  grid-template-columns: 21.5% 1fr;
+  aspect-ratio: 929 / 198;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  border: var(--hline) solid var(--ink);   /* the only outline: no extra line underneath */
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font);
+  font-weight: 400;
+  line-height: 1;
+}
+
+/* left cell: NON / INT. split by the diagonal */
+.site-header .brand {
+  position: relative;
+  display: block;
+  border-right: var(--hline) solid var(--ink);
+  color: inherit;
+  text-decoration: none;
+}
+.site-header .slash {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+.site-header .slash line { stroke: var(--ink); stroke-width: var(--hline); }
+
+.site-header .non,
+.site-header .int {
+  position: absolute;
+  font-size: 5.17cqw;                /* 48px at 929px wide */
+}
+.site-header .non {
+  /* it's a <button>, so reset the browser styling */
+  background: none;
+  border: 0;
+  padding: 0;
+  margin: 0;
+  font: inherit;
+  font-size: 5.17cqw;
+  line-height: 1;
+  cursor: pointer;
+  top: 4%;
+  left: 4%;
+  color: transparent;                /* outline only */
+  -webkit-text-stroke: 1px var(--ink);
+}
+.site-header .int {
+  bottom: 5%;
+  right: 4%;
+  color: var(--ink);                 /* solid fill */
+  text-decoration: none;
+}
+
+/* right cell: nav pinned to the bottom */
+.site-header .nav {
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-end;
+  padding-bottom: 3.5%;
+}
+.site-header .nav a {
+  font-size: 3.44cqw;                /* 32px at 929px wide */
+  text-transform: uppercase;
+  color: var(--ink);
+  text-decoration: none;
+}
+
+/* hover states (placeholders: swap for page / light-dark actions) */
+.site-header .nav a:hover,
+.site-header .int:hover { opacity: .5; }
+.site-header .non:hover,
+.site-header .non:focus-visible { color: var(--ink); }
+
+/* ---------- Article ---------- */
+.article {
+  width: 75%;                       /* change this to resize every image + the text */
+  margin: 0 auto;                   /* centered under the header */
+  padding-top: 48px;
+}
+
+.article img {
+  display: block;
+  width: 100%;
+  height: auto;                     /* each photo keeps its own proportions */
+}
+
+.hero { margin: 0; }
+
+.article h1 {
+  margin: 36px 0 48px;
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+}
+
+.intro { margin-bottom: 56px; }
+.intro p {
+  margin: 0 0 18px;
+  font-size: 16px;
+  max-width: 62ch;
+}
+
+.figure { margin: 48px 0 24px; }
+
+.qa { margin-bottom: 8px; }
+.qa p {
+  margin: 0 0 14px;
+  font-size: 16px;
+  line-height: 1.55;
+}
+.qa strong { font-weight: 700; }
+
+.qa .note {
+  font-size: 13px;
+  font-style: italic;
+  opacity: .65;
+}
+
+.pull {
+  margin: 36px 0;
+  padding: 0;
+}
+.pull p {
+  margin: 0 0 6px;
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+}
+.pull cite {
+  font-size: 13px;
+  font-style: normal;
+  opacity: .65;
+}
+
+.figure.narrow img {               /* very tall images: keep them from towering over the text */
+  width: 62%;
+  margin: 0 auto;
+}
+
+/* ---------- Home ---------- */
+.home {
+  width: 66%;                       /* width of each feature (image + title) */
+  margin: 0 auto;
+  padding-top: 80px;
+}
+
+.feature { margin: 0 0 80px; }
+
+.feature-img { display: block; }
+.feature-img img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.feature-title {
+  display: block;
+  margin-top: 28px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid color-mix(in srgb, var(--ink) 35%, transparent);
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1.25;
+  text-decoration: none;
+  color: var(--ink);
+}
+.feature-title:hover,
+.feature-img:hover + .feature-title { border-bottom-color: var(--ink); }
+
+/* ---------- Small screens ---------- */
+@media (max-width: 560px) {
+  .wrap { margin-top: 16px; }
+  .article { width: 100%; padding-top: 28px; }
+  .home { width: 100%; padding-top: 40px; }
+  .feature-title { font-size: 17px; }
+  .article h1 { font-size: 19px; margin: 28px 0 32px; }
+  .qa p { font-size: 15px; }
+  .pull p { font-size: 19px; }
+  .figure.narrow img { width: 80%; }
+}
